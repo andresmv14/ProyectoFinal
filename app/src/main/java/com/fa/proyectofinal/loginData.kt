@@ -1,3 +1,5 @@
 package com.fa.proyectofinal
 
-data class loginData(val email:String, val password:String)
+import com.google.gson.annotations.SerializedName
+
+data class loginData(@SerializedName("email") val email:String, @SerializedName("password") val password:String)
