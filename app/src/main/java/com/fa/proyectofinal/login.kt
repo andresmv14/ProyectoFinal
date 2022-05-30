@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,7 @@ class login : Fragment() {
     lateinit var email:EditText
     lateinit var password: EditText
     lateinit var btnlogin: Button
+    lateinit var btnRegister: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +32,14 @@ class login : Fragment() {
             email = view.findViewById(R.id.email)
             password = view.findViewById(R.id.pass)
             btnlogin = view.findViewById(R.id.btnLogin)
+            btnRegister = view.findViewById(R.id.btnRegister)
 
+            btnRegister.setOnClickListener{
+                findNavController().navigate(R.id.registerFragment)
+            }
             btnlogin.setOnClickListener{
             Api()
+
                 
        }
         // Inflate the layout for this fragment
@@ -43,7 +50,7 @@ class login : Fragment() {
 
         apiClient = ApiClient()
         sessionManager = SessionManager(requireContext())
-        apiClient.getApiService().getLogin(loginData(email.text.toString(),password.text.toString() )).enqueue(object : Callback<loginResponse>{
+        apiClient.getApiService(requireContext()).getLogin(loginData(email.text.toString(),password.text.toString() )).enqueue(object : Callback<loginResponse>{
             override fun onResponse(
                 call: Call<loginResponse>,
                 t: Response<loginResponse>
@@ -52,8 +59,9 @@ class login : Fragment() {
                 if (loginResponse?.status == 1 && loginResponse.user != null) {
                     Log.e("Conection api",loginResponse.user.token)
                     sessionManager.saveAuthToken(loginResponse.user.token)
+                    findNavController().navigate(R.id.task)
                 } else {
-                    Log.e("Error api","erooooooor")
+                    Log.e("Error api","errooooooor")
                 }
 
             }

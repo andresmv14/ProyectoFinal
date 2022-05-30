@@ -4,10 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
     app:startDestination="@id/login">
-
     <fragment
         android:id="@+id/login"
         android:name="com.fa.proyectofinal.login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/task"
+            app:destination="@id/viewTask" />
+        <action
+            android:id="@+id/registerFragment"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewTask"
+        android:name="com.fa.proyectofinal.viewTask"
+        android:label="fragment_view_task"
+        tools:layout="@layout/fragment_view_task" />
+    <fragment
+        android:id="@+id/register"
+        android:name="com.fa.proyectofinal.register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/regSu"
+            app:destination="@id/login" />
+    </fragment>
 </navigation>
