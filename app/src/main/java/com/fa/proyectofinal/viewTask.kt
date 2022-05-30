@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,13 +18,20 @@ class viewTask : Fragment() {
 
         private lateinit var sessionManager: SessionManager
         private lateinit var apiClient: ApiClient
+        lateinit var btnA:Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val vista = inflater.inflate(R.layout.fragment_view_task, container, false)
         // Inflate the layout for this fragment
         viewT()
-        return inflater.inflate(R.layout.fragment_view_task, container, false)
+        btnA = vista.findViewById(R.id.btnAdd)
+
+        btnA.setOnClickListener {
+            findNavController().navigate(R.id.addT)
+        }
+            return vista
 
         }
     fun viewT(){

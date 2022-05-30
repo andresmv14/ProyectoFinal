@@ -2,7 +2,7 @@ package com.fa.proyectofinal
 
 
 
-import android.telecom.Call
+
 import retrofit2.http.*
 
 
@@ -16,4 +16,7 @@ interface APIService {
 
     @POST(Constants.REG_URL)
     fun getRegister(@Body res:registerData): retrofit2.Call<registerResponse>
+
+    @POST(Constants.POSTS_URL)
+    fun getTask(@Body res:taskData): retrofit2.Call<taskResponse>
 }

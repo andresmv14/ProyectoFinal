@@ -20,7 +20,11 @@
         android:id="@+id/viewTask"
         android:name="com.fa.proyectofinal.viewTask"
         android:label="fragment_view_task"
-        tools:layout="@layout/fragment_view_task" />
+        tools:layout="@layout/fragment_view_task" >
+        <action
+            android:id="@+id/addT"
+            app:destination="@id/addTask" />
+    </fragment>
     <fragment
         android:id="@+id/register"
         android:name="com.fa.proyectofinal.register"
@@ -29,5 +33,14 @@
         <action
             android:id="@+id/regSu"
             app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTask"
+        android:name="com.fa.proyectofinal.addTask"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/viewAd"
+            app:destination="@id/viewTask" />
     </fragment>
 </navigation>
